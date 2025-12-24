@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="form-page" style="padding: 4rem 0;">
+    <div style="text-align: center; margin-bottom: 4rem;">
+        <h1 style="font-size: 3rem;">Journalist Portal</h1>
+        <p style="color: var(--text-secondary);">Bring the truth to light. Upload your report with media.</p>
+    </div>
+
+    <div class="form-container">
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="title">Headline</label>
+                <input type="text" id="title" name="title" class="form-control" placeholder="The next big thing..."
+                    required>
+            </div>
+
+            <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div>
+                    <label for="category">Category</label>
+                    <select id="category" name="category" class="form-control" required>
+                        <option value="Global">Global</option>
+                        <option value="Local">Local</option>
+                        <option value="Technology">Technology</option>
+                        <option value="Sports">Sports</option>
+                        <option value="Politics">Politics</option>
+                        <option value="Culture">Culture</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="area">Area/City</label>
+                    <input type="text" id="area" name="area" class="form-control" placeholder="New York, Mars, etc."
+                        required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="author">Author Name</label>
+                <input type="text" id="author" name="author" class="form-control" placeholder="Your Name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="content">Full Report</label>
+                <textarea id="content" name="content" class="form-control" rows="8" placeholder="Tell the story..."
+                    required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="image">Featured Image (Optional)</label>
+                <input type="file" id="image" name="image" class="form-control" accept="image/*">
+            </div>
+
+            <div class="form-group">
+                <label for="video">Featured Video (Optional)</label>
+                <input type="file" id="video" name="video" class="form-control" accept="video/*">
+            </div>
+
+            <button type="submit" class="submit-btn" style="margin-top: 2rem;">Publish Report</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

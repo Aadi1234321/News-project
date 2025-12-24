@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if news_list %}
+<!-- Hero Section for the latest news -->
+<section class="hero">
+    {% set latest = news_list[0] %}
+    <img src="{{ latest.image_url if latest.image_url else 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1200' }}"
+        alt="Hero Image" class="hero-img">
+    <div class="hero-text">
+        <span class="tag">{{ latest.category }}</span>
+        <h1>{{ latest.title }}</h1>
+        <p>{{ latest.content[:150] }}...</p>
+        <br>
+        <a href="/news/{{ latest.id }}" class="upload-btn" style="text-decoration: none;">Read Story</a>
+    </div>
+</section>
+
+<div class="filter-bar" style="margin-bottom: 3rem; display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 1rem;">
+    <a href="/"
+        style="text-decoration: none; color: {{ 'var(--text-primary)' if not request.args.get('category') else 'var(--text-secondary)' }}; font-weight: 600;">All</a>
+    {% for cat in categories %}
+    <a href="/?category={{ cat }}"
+        style="text-decoration: none; color: {{ 'var(--text-primary)' if request.args.get('category') == cat else 'var(--text-secondary)' }}; font-weight: 600;">{{
+        cat }}</a>
+    {% endfor %}
+</div>
+
+<div class="news-grid">
+    {% for news in news_list[1:] %}
+    <div class="news-card">
+        <div class="card-img-container">
+            <img src="{{ news.image_url if news.image_url else 'https://images.unsplash.com/photo-1585829365234-78d91f13b692?q=80&w=600' }}"
+                alt="News" class="card-img">
+        </div>
+        <div class="card-body">
+            <span class="tag" style="margin-bottom: 0.5rem; font-size: 0.7rem;">{{ news.category }}</span>
+            <h3 class="card-title">{{ news.title }}</h3>
+            <p class="card-excerpt">{{ news.content }}</p>
+            <div class="card-meta">
+                <span>By {{ news.author }}</span>
+                <span>{{ news.area if news.area else 'Global' }}</span>
+            </div>
+            <br>
+            <a href="/news/{{ news.id }}"
+                style="text-decoration: none; color: var(--accent-color); font-weight: 600; font-size: 0.9rem;">Read
+                More →</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div style="text-align: center; padding: 4rem 0;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">No News Yet.</h2>
+    <p style="color: var(--text-secondary);">Be the first journalist to report from the future.</p>
+    <br><br>
+    <a href="/upload" class="upload-btn" style="text-decoration: none;">Submit News</a>
+</div>
+{% endif %}
+{% endblock %}

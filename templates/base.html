@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus News | Future of Journalism</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta name="description" content="Nexus News provides the latest updates from your local area and across the globe with high-quality images and videos.">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">NEXUS<span>NEWS</span></a>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/?category=Technology">Tech</a>
+                <a href="/?category=Sports">Sports</a>
+                <a href="/?category=Politics">Politics</a>
+                <a href="/upload" class="upload-btn">Journalist Portal</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">NEXUS <span>NEWS</span></div>
+            <p>&copy; 2025 Nexus News Network. All rights reserved.</p>
+            <div class="socials">
+                <a href="#">Twitter</a>
+                <a href="#">Instagram</a>
+                <a href="#">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
